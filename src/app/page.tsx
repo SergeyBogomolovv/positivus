@@ -1,7 +1,13 @@
+import Companies from "@/sections/companies";
+import HeroSection from "@/sections/hero";
+import ServicesSection from "@/sections/services";
+
 export default function Home() {
   return (
-    <main className="flex flex-col min-h-[100svh] items-center justify-center font-bold text-3xl">
-      hello world
+    <main className="flex flex-col gap-10">
+      <HeroSection />
+      <Companies />
+      <ServicesSection />
     </main>
   );
 }
