@@ -1,4 +1,5 @@
 import Companies from "@/sections/companies";
+import FaqSection from "@/sections/faq";
 import HeroSection from "@/sections/hero";
 import ServicesSection from "@/sections/services";
 
@@ -8,6 +9,7 @@ export default function Home() {
       <HeroSection />
       <Companies />
       <ServicesSection />
+      <FaqSection />
     </main>
   );
 }

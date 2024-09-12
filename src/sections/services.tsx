@@ -67,8 +67,9 @@ export default function ServicesSection() {
         </p>
       </div>
       <div className="grid md:grid-cols-2 gap-10">
-        {cards.map((card) => (
+        {cards.map((card, i) => (
           <Card
+            i={i}
             key={card.title}
             variant={card.variant}
             href={card.href}

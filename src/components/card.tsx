@@ -1,3 +1,5 @@
+"use client";
+import { motion, Variants } from "framer-motion";
 import { Url } from "next/dist/shared/lib/router/router";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,7 +10,32 @@ interface CardProps {
   imageSrc: string;
   href: Url;
   title2?: string;
+  i: number;
 }
+
+const cardVariants: Variants = {
+  initial(i: number) {
+    const isEven = i % 2 === 0;
+    return {
+      scale: 0.2,
+      x: isEven ? -200 : 200,
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+      },
+    };
+  },
+  animate() {
+    return {
+      x: 0,
+      scale: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+      },
+    };
+  },
+};
 
 export default function Card({
   title,
@@ -16,9 +43,16 @@ export default function Card({
   variant,
   imageSrc,
   href,
+  i,
 }: CardProps) {
+  const MotionLink = motion(Link);
   return (
-    <div
+    <motion.div
+      viewport={{ once: true }}
+      variants={cardVariants}
+      initial="initial"
+      whileInView="animate"
+      custom={i}
       className={`relative rounded-3xl md:p-12 p-6 border-2 border-dark border-b-8 flex items-center justify-between gap-10 bg-${variant}`}
     >
       <div className="flex flex-col justify-between md:gap-20 gap-24">
@@ -35,7 +69,8 @@ export default function Card({
             {title2}
           </span>
         </p>
-        <Link
+        <MotionLink
+          whileHover={{ gap: "8px" }}
           href={href}
           className={`flex items-center gap-4 text-xl font-thin ${variant === "dark" && "text-gray"}`}
         >
@@ -46,7 +81,7 @@ export default function Card({
             height={40}
           />
           <p className="md:block hidden">Learn more</p>
-        </Link>
+        </MotionLink>
       </div>
       <Image
         className="absolute md:right-10 md:bottom-auto bottom-8 right-8 md:w-[150px] lg:w-[170px] xl:w-[200px] w-[130px]"
@@ -55,6 +90,6 @@ export default function Card({
         width={200}
         height={200}
       />
-    </div>
+    </motion.div>
   );
 }

@@ -23,7 +23,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${SpaceGrotesk.className} w-[80%] mx-auto my-10`}>
+      <body
+        className={`${SpaceGrotesk.className} lg:w-[85%]  w-[90%] mx-auto my-10`}
+      >
         <Header />
         {children}
       </body>
